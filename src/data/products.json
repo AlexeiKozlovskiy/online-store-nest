@@ -1,6 +1,5 @@
 [
   {
-    "id": 1,
     "name": "Geometric star",
     "stock": 29,
     "collection": 2022,
@@ -9,13 +8,9 @@
     "size": 9,
     "favorite": false,
     "category": "Tree decorations",
-    "images": [
-      "/assets/products/geometric-star.jpg",
-      "/assets/products/geometric-star(1).jpg"
-    ]
+    "images": ["/assets/products/geometric-star.jpg", "/assets/products/geometric-star(1).jpg"]
   },
   {
-    "id": 2,
     "name": "Christmas Pine Cone",
     "stock": 14,
     "collection": 2023,
@@ -30,7 +25,6 @@
     ]
   },
   {
-    "id": 3,
     "name": "Lametta Christmas",
     "price": 3.65,
     "stock": 40,
@@ -45,7 +39,6 @@
     ]
   },
   {
-    "id": 4,
     "name": "Popcorn Machine",
     "price": 6.99,
     "stock": 40,
@@ -60,7 +53,6 @@
     ]
   },
   {
-    "id": 5,
     "name": "Christmas garland with stars",
     "price": 3.99,
     "stock": 10,
@@ -75,7 +67,6 @@
     ]
   },
   {
-    "id": 6,
     "name": "Decorative Hanging Branch with Hooks",
     "price": 5.95,
     "stock": 30,
@@ -90,7 +81,6 @@
     ]
   },
   {
-    "id": 7,
     "name": "3 DIY Christmas baubles with markers",
     "price": 6.95,
     "stock": 47,
@@ -105,7 +95,6 @@
     ]
   },
   {
-    "id": 8,
     "name": "Wooden Ornament Display Tree",
     "price": 16.95,
     "stock": 23,
@@ -120,7 +109,6 @@
     ]
   },
   {
-    "id": 9,
     "name": "Artificial snow",
     "price": 3.45,
     "stock": 13,
@@ -129,13 +117,9 @@
     "size": 1,
     "favorite": false,
     "category": "Do It Yourself",
-    "images": [
-      "/assets/products/fake-snow-250g.jpg",
-      "/assets/products/fake-snow-250g(1).jpg"
-    ]
+    "images": ["/assets/products/fake-snow-250g.jpg", "/assets/products/fake-snow-250g(1).jpg"]
   },
   {
-    "id": 10,
     "name": "Gnome with LED hat",
     "price": 12.95,
     "stock": 3,
@@ -150,7 +134,6 @@
     ]
   },
   {
-    "id": 11,
     "name": "Christmas tree candle holder",
     "price": 5.95,
     "stock": 21,
@@ -165,7 +148,6 @@
     ]
   },
   {
-    "id": 12,
     "name": "Christmas tree figurine",
     "price": 25.95,
     "stock": 46,
@@ -180,7 +162,6 @@
     ]
   },
   {
-    "id": 13,
     "name": "Deco Christmas tree",
     "price": 2.25,
     "stock": 48,
@@ -195,7 +176,6 @@
     ]
   },
   {
-    "id": 14,
     "name": "Natural Christmas Wreath with Stars",
     "price": 17.95,
     "stock": 40,
@@ -210,7 +190,6 @@
     ]
   },
   {
-    "id": 15,
     "name": "Nutcracker",
     "price": 9.95,
     "stock": 27,
@@ -225,7 +204,6 @@
     ]
   },
   {
-    "id": 16,
     "name": "Gingerbread House",
     "price": 4.99,
     "stock": 7,
@@ -240,7 +218,6 @@
     ]
   },
   {
-    "id": 17,
     "name": "LED lights warm",
     "price": 8.99,
     "stock": 20,
@@ -255,7 +232,6 @@
     ]
   },
   {
-    "id": 18,
     "name": "50 LED Light Chain",
     "price": 12.99,
     "stock": 30,
@@ -270,7 +246,6 @@
     ]
   },
   {
-    "id": 19,
     "name": "10 LED Light Chain",
     "price": 10.99,
     "stock": 40,
@@ -285,7 +260,6 @@
     ]
   },
   {
-    "id": 20,
     "name": "Luxury Christmas bauble with ice flowers",
     "price": 3.39,
     "stock": 31,
@@ -300,7 +274,6 @@
     ]
   },
   {
-    "id": 21,
     "name": "Onion Glass Bauble",
     "price": 3.99,
     "stock": 2,
@@ -315,7 +288,6 @@
     ]
   },
   {
-    "id": 22,
     "name": "Christmas stars 12 pieces",
     "price": 6.95,
     "stock": 34,
@@ -330,7 +302,6 @@
     ]
   },
   {
-    "id": 23,
     "name": "Paper Christmas Bauble",
     "price": 2.99,
     "stock": 1,
@@ -345,7 +316,6 @@
     ]
   },
   {
-    "id": 24,
     "name": "Bead garland",
     "price": 4.55,
     "stock": 5,
@@ -360,7 +330,6 @@
     ]
   },
   {
-    "id": 25,
     "name": "Glitter 3D Christmas stars",
     "price": 3.99,
     "stock": 6,
@@ -375,7 +344,6 @@
     ]
   },
   {
-    "id": 26,
     "name": "Christmas Bauble Mercury",
     "price": 1.99,
     "stock": 2,
@@ -390,7 +358,6 @@
     ]
   },
   {
-    "id": 27,
     "name": "Porcelain house with LED",
     "price": 11.95,
     "stock": 43,
@@ -405,7 +372,6 @@
     ]
   },
   {
-    "id": 28,
     "name": "Snowman with lantern",
     "price": 34.99,
     "stock": 7,
@@ -420,7 +386,6 @@
     ]
   },
   {
-    "id": 29,
     "name": "Garland with snow",
     "price": 15.5,
     "stock": 24,
@@ -435,7 +400,6 @@
     ]
   },
   {
-    "id": 30,
     "name": "Feather garland",
     "price": 7.99,
     "stock": 48,
@@ -450,7 +414,6 @@
     ]
   },
   {
-    "id": 31,
     "name": "Donut Christmas Ornament",
     "price": 5.99,
     "stock": 38,
@@ -465,7 +428,6 @@
     ]
   },
   {
-    "id": 32,
     "name": "Standing gnome",
     "price": 14.55,
     "stock": 46,
@@ -480,7 +442,6 @@
     ]
   },
   {
-    "id": 33,
     "name": "Christmas cupcake macroon",
     "price": 5.95,
     "stock": 43,
@@ -495,7 +456,6 @@
     ]
   },
   {
-    "id": 34,
     "name": "Flamingo on scooter",
     "price": 5.99,
     "stock": 17,
@@ -510,7 +470,6 @@
     ]
   },
   {
-    "id": 35,
     "name": "Christmas Hamburger",
     "price": 3.99,
     "stock": 12,
@@ -525,7 +484,6 @@
     ]
   },
   {
-    "id": 36,
     "name": "Pine cone garland",
     "price": 7.99,
     "stock": 1,
@@ -540,7 +498,6 @@
     ]
   },
   {
-    "id": 37,
     "name": "Tree topper star",
     "price": 4.99,
     "stock": 31,
@@ -555,7 +512,6 @@
     ]
   },
   {
-    "id": 38,
     "name": "Transparent fillable Christmas bauble",
     "price": 7.99,
     "stock": 35,
@@ -570,7 +526,6 @@
     ]
   },
   {
-    "id": 39,
     "name": "Star ornament",
     "price": 2.09,
     "stock": 23,
@@ -585,7 +540,6 @@
     ]
   },
   {
-    "id": 40,
     "name": "Feather Christmas Bauble",
     "price": 3.99,
     "stock": 13,
@@ -600,7 +554,6 @@
     ]
   },
   {
-    "id": 41,
     "name": "Star decoration flannel",
     "price": 2.69,
     "stock": 31,
@@ -615,7 +568,6 @@
     ]
   },
   {
-    "id": 42,
     "name": "2 glitter balls of petals",
     "price": 3.95,
     "stock": 30,
@@ -630,7 +582,6 @@
     ]
   },
   {
-    "id": 43,
     "name": "Black Bauble with Ruches",
     "price": 2.39,
     "stock": 39,
@@ -645,7 +596,6 @@
     ]
   },
   {
-    "id": 44,
     "name": "Set of 4 Metallic Twist Candles",
     "price": 4.95,
     "stock": 25,
@@ -660,7 +610,6 @@
     ]
   },
   {
-    "id": 45,
     "name": "Antique Christmas bell",
     "price": 3.99,
     "stock": 3,
@@ -675,7 +624,6 @@
     ]
   },
   {
-    "id": 46,
     "name": "Christmas Stocking",
     "price": 7.45,
     "stock": 19,
@@ -690,7 +638,6 @@
     ]
   },
   {
-    "id": 47,
     "name": "Hanger deer antlers",
     "price": 2.66,
     "stock": 12,
@@ -705,7 +652,6 @@
     ]
   },
   {
-    "id": 48,
     "name": "Christmas bauble with deco",
     "price": 2.99,
     "stock": 5,
@@ -720,7 +666,6 @@
     ]
   },
   {
-    "id": 49,
     "name": "Christmas bells",
     "price": 8.95,
     "stock": 29,
@@ -735,7 +680,6 @@
     ]
   },
   {
-    "id": 50,
     "name": "Christmas garland",
     "price": 3.39,
     "stock": 50,
@@ -750,7 +694,6 @@
     ]
   },
   {
-    "id": 51,
     "name": "Christmas bauble with diamonds",
     "price": 4.65,
     "stock": 37,
@@ -765,7 +708,6 @@
     ]
   },
   {
-    "id": 52,
     "name": "Blowfish Glass Hanging Figurine",
     "price": 4.99,
     "stock": 30,
@@ -780,7 +722,6 @@
     ]
   },
   {
-    "id": 53,
     "name": "Jellyfish Glass Hanging Figurine",
     "price": 7.99,
     "stock": 35,
@@ -795,7 +736,6 @@
     ]
   },
   {
-    "id": 54,
     "name": "Glittered Poinsettia ",
     "price": 6.99,
     "stock": 29,
@@ -810,7 +750,6 @@
     ]
   },
   {
-    "id": 55,
     "name": "Gnome with Sequin Hat",
     "price": 17.65,
     "stock": 23,
@@ -825,7 +764,6 @@
     ]
   },
   {
-    "id": 56,
     "name": "Christmas tree porcelain LED",
     "price": 6.99,
     "stock": 24,
@@ -840,7 +778,6 @@
     ]
   },
   {
-    "id": 57,
     "name": "Floral Hoop Wreath",
     "price": 16.65,
     "stock": 16,
@@ -855,7 +792,6 @@
     ]
   },
   {
-    "id": 58,
     "name": "Lying down reindeer",
     "price": 3.95,
     "stock": 20,
@@ -870,7 +806,6 @@
     ]
   },
   {
-    "id": 59,
     "name": "Deco Christmas tree",
     "price": 3.59,
     "stock": 47,
@@ -885,7 +820,6 @@
     ]
   },
   {
-    "id": 60,
     "name": "Alpaca decoration",
     "price": 3.95,
     "stock": 25,
@@ -896,7 +830,7 @@
     "category": "Tree decorations",
     "images": [
       "/assets/products/hanging-alpaca-decoration-13cm.jpg",
-      "/assets/products/hanging-alpaca-decoration-13cm (1).jpg"
+      "/assets/products/hanging-alpaca-decoration-13cm(1).jpg"
     ]
   }
 ]
