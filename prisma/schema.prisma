@@ -15,7 +15,7 @@ model Product {
   name       String
   stock      Int
   collection Int
-  price      Int
+  price      Float
   color      String
   size       Int
   favorite   Boolean?
