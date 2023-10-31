@@ -22,3 +22,10 @@ model Product {
   category   String
   images     String[]
 }
+
+model User {
+  id       String  @id @default(uuid())
+  email    String  @unique
+  name     String?
+  password String
+}
