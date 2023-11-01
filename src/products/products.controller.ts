@@ -78,7 +78,7 @@ export class ProductsController {
   }
 
   @Delete(':id')
-  async deleteUser(@Param('id', new ParseUUIDPipe()) id: string) {
+  async deleteProduct(@Param('id', new ParseUUIDPipe()) id: string) {
     const product = await this.productsService.getProduct(id);
     if (!product) {
       throw new HttpException(MessageStatus.PRODUCT_NOT_FOUND, HttpStatus.NOT_FOUND);
