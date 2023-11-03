@@ -9,6 +9,7 @@ export class LoginDto {
   password: string;
 }
 
+// postman form req
 // {
 //     "id": "83b13564-9139-44da-9683-dd1f7a9cf6c6",
 //     "name": "Lexa",
