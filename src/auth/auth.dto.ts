@@ -1,18 +1,25 @@
-import { IsEmail, IsString } from 'class-validator';
+import { IsBoolean, IsEmail, IsString } from 'class-validator';
 
 export class LoginDto {
   @IsString()
   @IsEmail()
-  username: string;
+  email: string;
 
   @IsString()
   password: string;
 }
 
-// postman form req
-// {
-//     "id": "83b13564-9139-44da-9683-dd1f7a9cf6c6",
-//     "name": "Lexa",
-//     "email": "RubiRod@gmail.com",
-//     "password": "123"
-// }
+export class LoginGoogleDto {
+  @IsString()
+  login: string;
+
+  @IsString()
+  @IsEmail()
+  email: string;
+
+  @IsString()
+  picture: string;
+
+  @IsBoolean()
+  isGoogle: boolean;
+}
