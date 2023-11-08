@@ -11,6 +11,11 @@ export interface Product {
   images: string[];
 }
 
+export interface UserServise {
+  email: string;
+  sub: { login: string; picture: string; isGoogle: boolean };
+}
+
 export enum MessageStatus {
   PRODUCT_NOT_FOUND = 'Product not found',
   ERROR_JSON = 'Failed read and parse JSON',
@@ -19,4 +24,5 @@ export enum MessageStatus {
   PRODUCT_UPDATE_SUCCESS = 'Product updated successfully',
   PRODUCTS_DELETE_SUCCESS = 'All products deleted successfully',
   PRODUCT_DELETE_SUCCESS = 'Product deleted successfully',
+  THISE_EMAIL_IS_ALREADY_REDISTRED = 'This email is already registered',
 }

@@ -1,8 +1,9 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { LoginDto } from './auth.dto';
+import { LoginDto, LoginGoogleDto } from './auth.dto';
 import { UserService } from 'src/user/user.service';
 import { compare } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
+import { UserServise } from 'src/types/types';
 
 const EXPIRE_TIME = 3500 * 1000;
 
@@ -10,47 +11,7 @@ const EXPIRE_TIME = 3500 * 1000;
 export class AuthService {
   constructor(private userService: UserService, private jwtService: JwtService) {}
 
-  async login(dto: LoginDto) {
-    const user = await this.validateUser(dto);
-    const payload = {
-      username: user.email,
-      sub: {
-        name: user.name,
-      },
-    };
-
-    return {
-      user,
-      backendTokens: {
-        accessToken: await this.jwtService.signAsync(payload, {
-          expiresIn: '1h',
-          secret: process.env.jwtSecretKey,
-        }),
-        refreshToken: await this.jwtService.signAsync(payload, {
-          expiresIn: '1d',
-          secret: process.env.jwtRefreshTokenKey,
-        }),
-        expiresIn: new Date().setTime(new Date().getTime() + EXPIRE_TIME),
-      },
-    };
-  }
-
-  async validateUser(dto: LoginDto) {
-    const user = await this.userService.findByEmail(dto.username);
-
-    if (user && (await compare(dto.password, user.password))) {
-      const { password, ...result } = user;
-      return result;
-    }
-    throw new UnauthorizedException();
-  }
-
-  async refreshToken(user: any) {
-    const payload = {
-      username: user.username,
-      sub: user.sub,
-    };
-
+  private async generateTokens(payload: any) {
     return {
       accessToken: await this.jwtService.signAsync(payload, {
         expiresIn: '1h',
@@ -62,5 +23,63 @@ export class AuthService {
       }),
       expiresIn: new Date().setTime(new Date().getTime() + EXPIRE_TIME),
     };
+  }
+
+  async login(dto: LoginDto) {
+    const user = await this.validateUser(dto);
+    const { email, login } = user;
+    const payload = {
+      email,
+      sub: { login },
+    };
+    const backendTokens = await this.generateTokens(payload);
+
+    return { user, backendTokens };
+  }
+
+  async loginGoogle(dto: LoginGoogleDto) {
+    const user = await this.validateGoogleUser(dto);
+    const { email, login, picture, isGoogle } = user;
+
+    const payload = {
+      email,
+      sub: { login, picture, isGoogle },
+    };
+
+    const backendTokens = await this.generateTokens(payload);
+
+    return { user, backendTokens };
+  }
+
+  async validateGoogleUser(dto: LoginGoogleDto) {
+    const user = await this.userService.findByEmail(dto.email);
+
+    if (user) {
+      return user;
+    } else {
+      const newUser = await this.userService.createGoogleUser(dto);
+      return newUser;
+    }
+  }
+
+  async validateUser(dto: LoginDto) {
+    const user = await this.userService.findByEmail(dto.email);
+
+    if (user && (await compare(dto.password, user.password))) {
+      const { password, ...result } = user;
+      return result;
+    }
+    throw new UnauthorizedException();
+  }
+
+  async refreshToken(user: UserServise) {
+    const payload = {
+      email: user.email,
+      sub: user.sub,
+    };
+
+    const backendTokens = await this.generateTokens(payload);
+
+    return { backendTokens };
   }
 }
