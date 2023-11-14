@@ -17,37 +17,15 @@ export class ProductsService {
   }
 
   async createProduct(dto: CreateProductDTO): Promise<Product> {
-    const { name, stock, collection, price, color, size, favorite, category, images } = dto;
     return this.prisma.product.create({
-      data: {
-        name,
-        stock,
-        collection,
-        price,
-        color,
-        size,
-        favorite,
-        category,
-        images,
-      },
+      data: { ...dto },
     });
   }
 
   async updateProduct(id: string, dto: UpdateProductDTO): Promise<Product> {
-    const { name, stock, collection, price, color, size, favorite, category, images } = dto;
     const updatedTrack = await this.prisma.product.update({
       where: { id },
-      data: {
-        name,
-        stock,
-        collection,
-        price,
-        color,
-        size,
-        favorite,
-        category,
-        images,
-      },
+      data: { ...dto },
     });
     return updatedTrack;
   }
