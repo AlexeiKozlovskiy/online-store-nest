@@ -1,4 +1,4 @@
-import { IsOptional, IsString } from 'class-validator';
+import { IsOptional, IsString, IsUUID } from 'class-validator';
 
 export class CreateProfileDto {
   @IsString()
@@ -23,7 +23,8 @@ export class CreateProfileDto {
   cvvCard: string;
 
   @IsOptional()
-  userId: string;
+  @IsUUID()
+  userId: string | null = null;
 }
 
 export class UpdateProfileDto extends CreateProfileDto {}

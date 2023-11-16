@@ -1,6 +1,6 @@
 import { IsString, IsInt, IsOptional, IsBoolean, IsNotEmpty } from 'class-validator';
 
-export class CreateProductDTO {
+export class CreateProductDto {
   @IsString()
   @IsNotEmpty()
   name: string;
@@ -37,4 +37,4 @@ export class CreateProductDTO {
   images: string[];
 }
 
-export class UpdateProductDTO extends CreateProductDTO {}
+export class UpdateProductDto extends CreateProductDto {}

@@ -28,18 +28,10 @@ export class UserService {
   }
 
   async createGoogleUser(dto: CreateGoogleUserDto) {
-    const user = await this.prisma.user.findUnique({
-      where: {
-        email: dto.email,
-      },
-    });
-
-    if (user) throw new ConflictException(MessageStatus.THISE_EMAIL_IS_ALREADY_REDISTRED);
-
-    const newUser = await this.prisma.user.create({
+    const user = await this.prisma.user.create({
       data: { ...dto },
     });
-    return newUser;
+    return user;
   }
 
   async findByEmail(email: string) {

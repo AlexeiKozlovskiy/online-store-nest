@@ -1,20 +1,26 @@
-import { Controller, Get, Param, UseGuards, ParseUUIDPipe, Post, Body } from '@nestjs/common';
+import { Controller, Get, Param, UseGuards, ParseUUIDPipe, Post, Body, Put } from '@nestjs/common';
 import { JwtGuard } from 'src/guards/jwt.guard';
 import { ProfileService } from './profile.service';
-import { CreateProfileDto } from './products.dto';
+import { CreateProfileDto, UpdateProfileDto } from './profile.dto';
 
 @Controller('profile')
 export class ProfileController {
-  constructor(private userService: ProfileService) {}
+  constructor(private profileService: ProfileService) {}
 
-  @Post()
+  @Post('create')
   async createUserProfile(@Body() dto: CreateProfileDto) {
-    return await this.userService.createProfile(dto);
+    return await this.profileService.createProfile(dto);
+  }
+
+  @Put('update')
+  async updateUserProfile(@Body() dto: UpdateProfileDto) {
+    const { userId } = dto;
+    return await this.profileService.updateProfile(userId, dto);
   }
 
   @UseGuards(JwtGuard)
   @Get(':id')
   async getUserProfile(@Param('id', new ParseUUIDPipe()) id: string) {
-    return await this.userService.findProfileById(id);
+    return await this.profileService.findProfileById(id);
   }
 }
