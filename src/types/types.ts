@@ -13,7 +13,7 @@ export interface Product {
 
 export interface UserServise {
   email: string;
-  sub: { login: string; picture: string; isGoogle: boolean };
+  sub: { login: string; picture?: string; isGoogle?: boolean };
 }
 
 export enum MessageStatus {
@@ -25,4 +25,5 @@ export enum MessageStatus {
   PRODUCTS_DELETE_SUCCESS = 'All products deleted successfully',
   PRODUCT_DELETE_SUCCESS = 'Product deleted successfully',
   THISE_EMAIL_IS_ALREADY_REDISTRED = 'This email is already registered',
+  USER_PROFILE_IS_EMPTY = 'User profile is empty',
 }

@@ -15,7 +15,7 @@ import { Product } from '.././types/types';
 import { ProductsService } from './products.service';
 import { createReadStream } from 'fs';
 import { MessageStatus } from '../types/types';
-import { CreateProductDTO, UpdateProductDTO } from './products.dto';
+import { CreateProductDto, UpdateProductDto } from './products.dto';
 
 @Controller('products')
 export class ProductsController {
@@ -36,7 +36,7 @@ export class ProductsController {
   }
 
   @Post()
-  async createProduct(@Body(ValidationPipe) dto: CreateProductDTO) {
+  async createProduct(@Body(ValidationPipe) dto: CreateProductDto) {
     await this.productsService.createProduct(dto);
     return { message: MessageStatus.PRODUCT_CREATE_SUCCESS };
   }
@@ -44,7 +44,7 @@ export class ProductsController {
   @Put(':id')
   async updateProduct(
     @Param('id', new ParseUUIDPipe()) id: string,
-    @Body(ValidationPipe) dto: UpdateProductDTO,
+    @Body(ValidationPipe) dto: UpdateProductDto,
   ) {
     const product = await this.productsService.getProduct(id);
     if (!product) {

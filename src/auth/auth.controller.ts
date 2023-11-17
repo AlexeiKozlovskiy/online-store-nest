@@ -3,7 +3,7 @@ import { CreateUserDto } from 'src/user/user.dto';
 import { UserService } from 'src/user/user.service';
 import { LoginDto, LoginGoogleDto } from './auth.dto';
 import { AuthService } from './auth.service';
-import { RefreshJwtGuard } from './guards/refresh.guard';
+import { RefreshJwtGuard } from 'src/guards/refresh.guard';
 
 @Controller('auth')
 export class AuthController {
