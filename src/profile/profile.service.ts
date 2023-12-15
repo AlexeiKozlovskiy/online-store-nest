@@ -40,7 +40,7 @@ export class ProfileService {
       where: { userId },
     });
     if (!profile) {
-      throw new HttpException(MessageStatus.USER_PROFILE_IS_EMPTY, HttpStatus.NOT_FOUND);
+      throw new HttpException(MessageStatus.USER_PROFILE_IS_EMPTY, HttpStatus.NO_CONTENT);
     }
     const { cvvCard, numberCard, dateCard } = profile;
     return {
