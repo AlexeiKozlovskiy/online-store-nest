@@ -1,4 +1,4 @@
-# <img src="https://github.com/AlexeiKozlovskiy/online-store-react/blob/develop/public/favicon.ico" alt="image" width="30" height="30"> Online-store-nest 
+# <img src="https://github.com/AlexeiKozlovskiy/online-store-react/blob/develop/public/favicon.ico" alt="logo app" width="30" height="30"> Online-store-nest 
 
 This is a repository of my NestJS servise for full stack app Online store. Thise servise performs a tasks creating, updating and storing products and users. Service using Prisma database. Authorization is protected and performed using a bearer token with it is update.
 
@@ -8,7 +8,7 @@ This is a repository of my NestJS servise for full stack app Online store. Thise
 First fetching data is can take near 1-3 minutes, further is fast.
 
 ## Deploy this backend servise and data base in [here](https://render.com/).
-<img src="https://github.com/AlexeiKozlovskiy/online-store-react/blob/develop/public/assets/readme/back-deploy2.png" alt="image" width="700">
+<img src="https://github.com/AlexeiKozlovskiy/online-store-react/blob/develop/public/assets/readme/back-deploy2.png" alt="deploy image" width="700">
 
 ## Details 
 Servise used followings REST endpoints:
@@ -58,7 +58,7 @@ Servise used followings REST endpoints:
 
  * `profile` (`/profile` route)
     * `GET profile/:id` - get profile by id
-      - Server answer with `status code` **200** if profile it exists.
+      - Server answer with `status code` **200** if profile it exists (name, address, phone, nameCard, numberCard, dateCard, cvvCard)
       - Server answer with `status code` **204** and message `User profile is empty` if profile user is empty data.
     * `POST /profile/create` - create new profile
       - Server answer with `status code` **200** and profile records
@@ -81,4 +81,4 @@ To run this project locally, follow these steps:
 - Checkout to the development branch `git checkout develop`
 - Install dependencies using `npm install`.
 - Rename `.env.example` to `.env`
-- Run locally with SSR mode `npm run start` or `npm run start` .
+- Run locally with SSR mode `npm run start` or `npm run dev` .
