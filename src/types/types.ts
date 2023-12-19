@@ -18,7 +18,9 @@ export interface UserServise {
 
 export enum MessageStatus {
   PRODUCT_NOT_FOUND = 'Product not found',
+  PRODUCTS_NOT_FOUND = 'Products not found',
   ERROR_JSON = 'Failed read and parse JSON',
+  ERROR_VALIDATION_PRODUCTS_FIELDS = 'Some products fields is invalid',
   PRODUCTS_INSERT_SUCCESS = 'Products inserted successfully',
   PRODUCT_CREATE_SUCCESS = 'Product created successfully',
   PRODUCT_UPDATE_SUCCESS = 'Product updated successfully',

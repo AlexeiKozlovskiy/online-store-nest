@@ -23,7 +23,11 @@ export class ProductsController {
 
   @Get()
   async getAllProducts(): Promise<Product[]> {
-    return await this.productsService.getProducts();
+    const products = await this.productsService.getProducts();
+    if (!products.length) {
+      throw new HttpException(MessageStatus.PRODUCTS_NOT_FOUND, HttpStatus.NOT_FOUND);
+    }
+    return products;
   }
 
   @Get(':id')
@@ -67,12 +71,20 @@ export class ProductsController {
       }
     }
     const productsJSON = await loadProducts();
-    await this.productsService.insertProductsFromJSON(productsJSON);
-    return { message: MessageStatus.PRODUCTS_INSERT_SUCCESS };
+    try {
+      await this.productsService.insertProductsFromJSON(productsJSON);
+      return { message: MessageStatus.PRODUCTS_INSERT_SUCCESS };
+    } catch (error) {
+      throw new HttpException(MessageStatus.ERROR_VALIDATION_PRODUCTS_FIELDS, HttpStatus.NOT_FOUND);
+    }
   }
 
   @Delete('/deleteAll')
   async deleteAllProducts() {
+    const products = await this.productsService.getProducts();
+    if (!products.length) {
+      throw new HttpException(MessageStatus.PRODUCTS_NOT_FOUND, HttpStatus.NOT_FOUND);
+    }
     await this.productsService.deleteAllProducts();
     return { message: MessageStatus.PRODUCTS_DELETE_SUCCESS };
   }
