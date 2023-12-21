@@ -28,7 +28,7 @@ Servise used followings REST endpoints:
       - Server answer with `status code` **400** and message `Some products fields is invalid` if request `body` does not contain **required** fields, or they are the wrong type
     * `PUT /products/:id` - update products info
       - Server answer with `status code` **200** and message `Product updated successfully` if fields is correctly
-      - Server answer with `status code` **400** and message if request `body` does not contain **required** fields, or it's the wrong type
+      - Server answer with `status code` **400** and message if request `body` does not contain **required** fields, or it's the wrong type, or id is invalid (not uuid).
       - Server answer with `status code` **404** and message `Product not found` if record with `id === products` doesn't exist
     * `DELETE /products/:id` - delete product
       - Server answer with `status code` **200** if the record is found and deleted, and message `Product deleted successfully`
