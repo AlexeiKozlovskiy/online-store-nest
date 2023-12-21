@@ -14,7 +14,7 @@ First fetching data is can take near 1-3 minutes, further is fast.
 Servise used followings REST endpoints:
 
  * `products` (`/products` route)
-    * `GET /products` - get all tracks
+    * `GET /products` - get all products
       - Server answer with `status code` **200** and all products records
       - Server answer with `status code` **404** and message `Products not found` if list of products doesn't exist, empty array
     * `GET /products/:id` - get single product by id
@@ -25,7 +25,7 @@ Servise used followings REST endpoints:
       - Server answer with `status code` **400** and message if request `body` does not contain **required** fields, or it's the wrong type
     * `POST /products/insertAll` - create new products, from a file with a list of products. 
       - Server answer with `status code` **201** and message `Products inserted successfully` if fields is correctly
-      - Server answer with `status code` **404** and message `Some products fields is invalid` if request `body` does not contain **required** fields, or they are the wrong type
+      - Server answer with `status code` **400** and message `Some products fields is invalid` if request `body` does not contain **required** fields, or they are the wrong type
     * `PUT /products/:id` - update products info
       - Server answer with `status code` **200** and message `Product updated successfully` if fields is correctly
       - Server answer with `status code` **400** and message if request `body` does not contain **required** fields, or it's the wrong type
