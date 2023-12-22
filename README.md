@@ -73,6 +73,7 @@ Servise used followings REST endpoints:
 - TS
 - NestJS
 - Prisma
+- Jest
 
 ## Installation
 To run this project locally, follow these steps:
@@ -81,4 +82,6 @@ To run this project locally, follow these steps:
 - Checkout to the development branch `git checkout develop`
 - Install dependencies using `npm install`.
 - Rename `.env.example` to `.env`
-- Run locally with SSR mode `npm run start` or `npm run dev` .
+- Run locally with SSR mode `npm run start` or `npm run dev`.
+- Run tests use `npm run test`, after starting the service locally.
+
