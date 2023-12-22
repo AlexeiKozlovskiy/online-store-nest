@@ -1,6 +1,6 @@
 # <img src="https://github.com/AlexeiKozlovskiy/online-store-react/blob/develop/public/favicon.ico" alt="logo app" width="30" height="30"> Online-store-nest 
 
-This is a repository of my NestJS servise for full stack app Online store. Thise servise performs a tasks creating, updating and storing products and users. Service using Prisma database. Authorization is protected and performed using a bearer token with it is update.
+This is a repository of my NestJS servise for full stack app Online store. Thise servise performs a tasks creating, updating and storing products and users. Service using Prisma database. Authorization is protected and performed using a bearer token with it is update. For products service written tests on Jest.
 
 ## Frontend part in [here](https://github.com/AlexeiKozlovskiy/online-store-react).
 
@@ -76,7 +76,7 @@ Servise used followings REST endpoints:
 - Jest
 
 ## Installation
-To run this project locally, follow these steps:
+To run this project locally or (and) run tests, follow these steps:
 
 - Clone this repository. `https://github.com/AlexeiKozlovskiy/online-store-nest.git`
 - Checkout to the development branch `git checkout develop`
