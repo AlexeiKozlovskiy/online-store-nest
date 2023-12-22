@@ -13,9 +13,9 @@ import {
 } from '@nestjs/common';
 import { Product } from '.././types/types';
 import { ProductsService } from './products.service';
-import { createReadStream } from 'fs';
 import { MessageStatus } from '../types/types';
 import { CreateProductDto, UpdateProductDto } from './products.dto';
+import { loadProducts } from '../helpers/helpersFunc';
 
 @Controller('products')
 export class ProductsController {
@@ -41,8 +41,7 @@ export class ProductsController {
 
   @Post()
   async createProduct(@Body(ValidationPipe) dto: CreateProductDto) {
-    await this.productsService.createProduct(dto);
-    return { message: MessageStatus.PRODUCT_CREATE_SUCCESS };
+    return await this.productsService.createProduct(dto);
   }
 
   @Put(':id')
@@ -60,17 +59,7 @@ export class ProductsController {
 
   @Post('/insertAll')
   async insertProducts() {
-    async function loadProducts() {
-      try {
-        const stream = createReadStream('src/data/products.json', 'utf-8');
-        let data = '';
-        for await (const chunk of stream) data += chunk;
-        return JSON.parse(data);
-      } catch (error) {
-        throw new Error(MessageStatus.ERROR_JSON);
-      }
-    }
-    const productsJSON = await loadProducts();
+    const productsJSON = await loadProducts('src/data/products.json');
     try {
       await this.productsService.insertProductsFromJSON(productsJSON);
       return { message: MessageStatus.PRODUCTS_INSERT_SUCCESS };
