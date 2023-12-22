@@ -17,6 +17,8 @@ export interface UserServise {
 }
 
 export enum MessageStatus {
+  SUCCESS = 'Success',
+  UNAUTHORIZED = 'Unauthorized',
   PRODUCT_NOT_FOUND = 'Product not found',
   PRODUCTS_NOT_FOUND = 'Products not found',
   ERROR_JSON = 'Failed read and parse JSON',
@@ -28,4 +30,5 @@ export enum MessageStatus {
   PRODUCT_DELETE_SUCCESS = 'Product deleted successfully',
   THISE_EMAIL_IS_ALREADY_REDISTRED = 'This email is already registered',
   USER_PROFILE_IS_EMPTY = 'User profile is empty',
+  REQUIRED_FIELDS_ERR = 'Request body does not contain required fields, or it`s the wrong type',
 }
