@@ -1,6 +1,6 @@
 # <img src="https://github.com/AlexeiKozlovskiy/online-store-react/blob/develop/public/favicon.ico" alt="logo app" width="30" height="30"> Online-store-nest 
 
-This is a repository of my NestJS servise for full stack app Online store. Thise servise performs a tasks creating, updating and storing products and users. Service using Prisma database. Authorization is protected and performed using a bearer token with it is update. For products service written tests on Jest.
+This is a repository of my NestJS servise for full stack app Online store. This servise performs a tasks creating, updating and storing products and users. Service using Prisma database. Authorization is protected and performed using a bearer token with it is update. For products service written tests on Jest. Endpoints for this service described in Swagger doc.
 
 ## Frontend part in [here](https://github.com/AlexeiKozlovskiy/online-store-react).
 
@@ -73,6 +73,7 @@ Servise used followings REST endpoints:
 - TS
 - NestJS
 - Prisma
+- Swagger
 - Jest
 
 ## Installation
@@ -84,4 +85,5 @@ To run this project locally or (and) run tests, follow these steps:
 - Rename `.env.example` to `.env`
 - Run locally with SSR mode `npm run start` or `npm run dev`.
 - Run tests use `npm run test`, after starting the service locally.
+- To run Swagger doc go to `http://localhost:4000/api`.
 
