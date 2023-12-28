@@ -87,3 +87,6 @@ To run this project locally or (and) run tests, follow these steps:
 - Run tests use `npm run test`, after starting the service locally.
 - To run Swagger doc go to `http://localhost:4000/api`.
 
+## Tests
+Written tests for product service:
+ <img src="https://github.com/AlexeiKozlovskiy/online-store-react/blob/develop/public/assets/readme/back-tests-product.png" alt="image" width="800">
