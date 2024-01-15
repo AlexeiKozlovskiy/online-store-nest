@@ -12,12 +12,23 @@ import {
   ValidationPipe,
   Query,
 } from '@nestjs/common';
-import { Product } from '.././types/types';
+import {
+  FiltersCategories,
+  FiltersCollections,
+  FiltersColor,
+  FiltersMaxPrice,
+  FiltersMaxSize,
+  FiltersMaxStock,
+  FiltersMinPrice,
+  FiltersMinSize,
+  FiltersMinStock,
+  Product,
+} from '.././types/types';
 import { ProductsService } from './products.service';
 import { MessageStatus } from '../types/types';
 import { CreateProductDto, ListAllQwerys, UpdateProductDto } from './products.dto';
 import { loadProducts } from '../helpers/helpersFunc';
-import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller('products')
 @ApiTags('Products')
@@ -28,6 +39,15 @@ export class ProductsController {
   @ApiResponse({ status: HttpStatus.OK, description: MessageStatus.SUCCESS })
   @ApiResponse({ status: HttpStatus.NOT_FOUND, description: MessageStatus.PRODUCTS_NOT_FOUND })
   @ApiOperation({ summary: 'Get all list products' })
+  @ApiQuery({ name: 'minStock', enum: FiltersMinStock, required: false })
+  @ApiQuery({ name: 'maxStock', enum: FiltersMaxStock, required: false })
+  @ApiQuery({ name: 'minSize', enum: FiltersMinSize, required: false })
+  @ApiQuery({ name: 'maxSize', enum: FiltersMaxSize, required: false })
+  @ApiQuery({ name: 'minPrice', enum: FiltersMinPrice, required: false })
+  @ApiQuery({ name: 'maxPrice', enum: FiltersMaxPrice, required: false })
+  @ApiQuery({ name: 'categories', enum: FiltersCategories, required: false })
+  @ApiQuery({ name: 'collections', enum: FiltersCollections, required: false })
+  @ApiQuery({ name: 'colors', enum: FiltersColor, required: false })
   async getAllProducts(@Query() query: ListAllQwerys): Promise<Product[]> {
     return await this.productsService.getProductsByQwery(query);
   }
