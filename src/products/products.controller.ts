@@ -10,11 +10,12 @@ import {
   ParseUUIDPipe,
   HttpException,
   ValidationPipe,
+  Query,
 } from '@nestjs/common';
 import { Product } from '.././types/types';
 import { ProductsService } from './products.service';
 import { MessageStatus } from '../types/types';
-import { CreateProductDto, UpdateProductDto } from './products.dto';
+import { CreateProductDto, ListAllQwerys, UpdateProductDto } from './products.dto';
 import { loadProducts } from '../helpers/helpersFunc';
 import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 
@@ -27,12 +28,8 @@ export class ProductsController {
   @ApiResponse({ status: HttpStatus.OK, description: MessageStatus.SUCCESS })
   @ApiResponse({ status: HttpStatus.NOT_FOUND, description: MessageStatus.PRODUCTS_NOT_FOUND })
   @ApiOperation({ summary: 'Get all list products' })
-  async getAllProducts(): Promise<Product[]> {
-    const products = await this.productsService.getProducts();
-    if (!products.length) {
-      throw new HttpException(MessageStatus.PRODUCTS_NOT_FOUND, HttpStatus.NOT_FOUND);
-    }
-    return products;
+  async getAllProducts(@Query() query: ListAllQwerys): Promise<Product[]> {
+    return await this.productsService.getProductsByQwery(query);
   }
 
   @Get(':id')
