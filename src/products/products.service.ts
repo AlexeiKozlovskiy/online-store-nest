@@ -13,7 +13,7 @@ export class ProductsService {
   }
 
   async getProductsByQwery(stringQwery: ListAllQwerys): Promise<Product[]> {
-    const allProducts = await this.prisma.product.findMany();
+    const allProducts = await this.getProducts();
     const qwery = this.getTransformQwery(stringQwery);
     const filtredProducts = this.getFiltredProducts(allProducts, qwery);
     return filtredProducts;
