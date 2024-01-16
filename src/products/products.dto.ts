@@ -48,3 +48,16 @@ export class CreateProductDto {
 }
 
 export class UpdateProductDto extends CreateProductDto {}
+
+export class ListAllQwerys {
+  color: string;
+  collection: string;
+  categories: string;
+  minPrice: string;
+  maxPrice: string;
+  minSize: string;
+  maxSize: string;
+  minStock: string;
+  maxStock: string;
+  q: string;
+}

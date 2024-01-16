@@ -37,6 +37,45 @@ describe('GET', () => {
     expect(response.body).toBeInstanceOf(Array);
   });
 
+  describe('Get products by query', () => {
+    it('should correctly get products by color query', async () => {
+      const query = '/products/?colors=black';
+      const response = await unauthorizedRequest.get(query).set(commonHeaders);
+
+      expect(response.status).toBe(StatusCodes.OK);
+      expect(response.body).toBeInstanceOf(Array);
+      expect(response.body.every(({ color }) => color === 'black')).toBeTruthy();
+    });
+
+    it('should correctly get products by collection query', async () => {
+      const query = '/products/?collections=2022';
+      const response = await unauthorizedRequest.get(query).set(commonHeaders);
+
+      expect(response.status).toBe(StatusCodes.OK);
+      expect(response.body).toBeInstanceOf(Array);
+      expect(response.body.every(({ collection }) => collection === 2022)).toBeTruthy();
+    });
+
+    it('should correctly get products by price query', async () => {
+      const query = '/products/?minPrice=10.99&maxPrice=32.99';
+      const response = await unauthorizedRequest.get(query).set(commonHeaders);
+
+      expect(response.status).toBe(StatusCodes.OK);
+      expect(response.body).toBeInstanceOf(Array);
+      expect(response.body.every(({ price }) => price >= 10.99 && price <= 32.99)).toBeTruthy();
+    });
+
+    it('should correctly get products by category and size query', async () => {
+      const query = '/products/?categories=Garland+%26+Wreath&minSize=200&maxSize=600';
+      const response = await unauthorizedRequest.get(query).set(commonHeaders);
+
+      expect(response.status).toBe(StatusCodes.OK);
+      expect(response.body).toBeInstanceOf(Array);
+      expect(response.body.every(({ category }) => category === 'Garland & Wreath')).toBeTruthy();
+      expect(response.body.every(({ size }) => size >= 200 && size <= 600)).toBeTruthy();
+    });
+  });
+
   it('should correctly get products by id', async () => {
     const creationResponse = await unauthorizedRequest
       .post(productsRoutes.create)
@@ -313,8 +352,9 @@ describe('DELETE', () => {
 
     const searchResponse = await unauthorizedRequest.get(productsRoutes.getAll).set(commonHeaders);
 
-    expect(searchResponse.status).toBe(StatusCodes.NOT_FOUND);
-    expect(searchResponse.body.message).toBe(MessageStatus.PRODUCTS_NOT_FOUND);
+    expect(searchResponse.status).toBe(StatusCodes.OK);
+    expect(searchResponse.body).toBeInstanceOf(Array);
+    expect(searchResponse.body.length).toBe(0);
   });
 
   it("respons should be with NOT_FOUND status code in case if products doesn't exist, empty array", async () => {

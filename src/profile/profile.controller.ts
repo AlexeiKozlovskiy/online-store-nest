@@ -12,7 +12,7 @@ import {
 import { JwtGuard } from 'src/guards/jwt.guard';
 import { ProfileService } from './profile.service';
 import { CreateProfileDto, UpdateProfileDto } from './profile.dto';
-import { ApiBearerAuth, ApiOperation, ApiResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { MessageStatus } from 'src/types/types';
 
 @Controller('profile')

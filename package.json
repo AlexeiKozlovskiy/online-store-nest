@@ -10,7 +10,7 @@
     "start:prod": "node dist/main",
     "start:debug": "nest start --debug --watch",
     "prettier": "prettier --write \"src/**/*.ts\"",
-    "test": "jest --testMatch \"<rootDir>/*.spec.ts\" --config ./test/jest.json --noStackTrace --runInBand"
+    "test": "jest --testMatch \"<rootDir>/*.test.ts\" --config ./test/jest.json --noStackTrace --runInBand"
   },
   "dependencies": {
     "@nestjs/common": "^10.3.0",
