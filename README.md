@@ -1,6 +1,6 @@
 # <img src="https://github.com/AlexeiKozlovskiy/online-store-react/blob/develop/public/favicon.ico" alt="logo app" width="30" height="30"> Online-store-nest 
 
-This is a repository of my NestJS servise for full stack app Online store. Thise servise performs a tasks creating, updating and storing products and users. Service using Prisma database. Authorization is protected and performed using a bearer token with it is update.
+This is a repository of my NestJS servise for full stack app Online store. This servise performs a tasks creating, updating and storing products and users. Service using Prisma database. Authorization is protected and performed using a bearer token with it is update. For products service written tests on Jest. Endpoints for this service described in Swagger.
 
 ## Frontend part in [here](https://github.com/AlexeiKozlovskiy/online-store-react).
 
@@ -14,7 +14,7 @@ First fetching data is can take near 1-3 minutes, further is fast.
 Servise used followings REST endpoints:
 
  * `products` (`/products` route)
-    * `GET /products` - get all tracks
+    * `GET /products` - get all products
       - Server answer with `status code` **200** and all products records
       - Server answer with `status code` **404** and message `Products not found` if list of products doesn't exist, empty array
     * `GET /products/:id` - get single product by id
@@ -25,10 +25,10 @@ Servise used followings REST endpoints:
       - Server answer with `status code` **400** and message if request `body` does not contain **required** fields, or it's the wrong type
     * `POST /products/insertAll` - create new products, from a file with a list of products. 
       - Server answer with `status code` **201** and message `Products inserted successfully` if fields is correctly
-      - Server answer with `status code` **404** and message `Some products fields is invalid` if request `body` does not contain **required** fields, or they are the wrong type
+      - Server answer with `status code` **400** and message `Some products fields is invalid` if request `body` does not contain **required** fields, or they are the wrong type
     * `PUT /products/:id` - update products info
       - Server answer with `status code` **200** and message `Product updated successfully` if fields is correctly
-      - Server answer with `status code` **400** and message if request `body` does not contain **required** fields, or it's the wrong type
+      - Server answer with `status code` **400** and message if request `body` does not contain **required** fields, or it's the wrong type, or id is invalid (not uuid).
       - Server answer with `status code` **404** and message `Product not found` if record with `id === products` doesn't exist
     * `DELETE /products/:id` - delete product
       - Server answer with `status code` **200** if the record is found and deleted, and message `Product deleted successfully`
@@ -73,12 +73,24 @@ Servise used followings REST endpoints:
 - TS
 - NestJS
 - Prisma
+- Swagger
+- Jest
 
 ## Installation
-To run this project locally, follow these steps:
+To run this project locally or (and) run tests, follow these steps:
 
 - Clone this repository. `https://github.com/AlexeiKozlovskiy/online-store-nest.git`
 - Checkout to the development branch `git checkout develop`
 - Install dependencies using `npm install`.
 - Rename `.env.example` to `.env`
-- Run locally with SSR mode `npm run start` or `npm run dev` .
+- Run locally with SSR mode `npm run start` or `npm run dev`.
+- Run tests use `npm run test`, after starting the service locally.
+- To run Swagger doc go to `http://localhost:4000/api`.
+
+## Tests
+Written tests for product service:
+ <img src="https://github.com/AlexeiKozlovskiy/online-store-react/blob/develop/public/assets/readme/back-tests-product.png" alt="image" width="800">
+
+## Documentation
+Swagger documentation for my own NestJS service:
+ <img src="https://github.com/AlexeiKozlovskiy/online-store-react/blob/develop/public/assets/readme/back-swagger.png" alt="image" width="800">

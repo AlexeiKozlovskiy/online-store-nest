@@ -10,27 +10,53 @@ import {
   ParseUUIDPipe,
   HttpException,
   ValidationPipe,
+  Query,
 } from '@nestjs/common';
-import { Product } from '.././types/types';
+import {
+  FiltersCategories,
+  FiltersCollections,
+  FiltersColor,
+  FiltersMaxPrice,
+  FiltersMaxSize,
+  FiltersMaxStock,
+  FiltersMinPrice,
+  FiltersMinSize,
+  FiltersMinStock,
+  Product,
+} from '.././types/types';
 import { ProductsService } from './products.service';
-import { createReadStream } from 'fs';
 import { MessageStatus } from '../types/types';
-import { CreateProductDto, UpdateProductDto } from './products.dto';
+import { CreateProductDto, ListAllQwerys, UpdateProductDto } from './products.dto';
+import { loadProducts } from '../helpers/helpersFunc';
+import { ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller('products')
+@ApiTags('Products')
 export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
   @Get()
-  async getAllProducts(): Promise<Product[]> {
-    const products = await this.productsService.getProducts();
-    if (!products.length) {
-      throw new HttpException(MessageStatus.PRODUCTS_NOT_FOUND, HttpStatus.NOT_FOUND);
-    }
-    return products;
+  @ApiResponse({ status: HttpStatus.OK, description: MessageStatus.SUCCESS })
+  @ApiResponse({ status: HttpStatus.NOT_FOUND, description: MessageStatus.PRODUCTS_NOT_FOUND })
+  @ApiOperation({ summary: 'Get all list products' })
+  @ApiQuery({ name: 'minStock', enum: FiltersMinStock, required: false })
+  @ApiQuery({ name: 'maxStock', enum: FiltersMaxStock, required: false })
+  @ApiQuery({ name: 'minSize', enum: FiltersMinSize, required: false })
+  @ApiQuery({ name: 'maxSize', enum: FiltersMaxSize, required: false })
+  @ApiQuery({ name: 'minPrice', enum: FiltersMinPrice, required: false })
+  @ApiQuery({ name: 'maxPrice', enum: FiltersMaxPrice, required: false })
+  @ApiQuery({ name: 'categories', enum: FiltersCategories, required: false })
+  @ApiQuery({ name: 'collections', enum: FiltersCollections, required: false })
+  @ApiQuery({ name: 'colors', enum: FiltersColor, required: false })
+  async getAllProducts(@Query() query: ListAllQwerys): Promise<Product[]> {
+    return await this.productsService.getProductsByQwery(query);
   }
 
   @Get(':id')
+  @ApiResponse({ status: HttpStatus.OK, description: MessageStatus.SUCCESS })
+  @ApiResponse({ status: HttpStatus.NOT_FOUND, description: MessageStatus.PRODUCT_NOT_FOUND })
+  @ApiParam({ name: 'id', required: true, description: 'Product identifier' })
+  @ApiOperation({ summary: 'Get single product by id' })
   async getProductsById(@Param('id', new ParseUUIDPipe()) id: string): Promise<Product> {
     const product = await this.productsService.getProduct(id);
     if (!product) {
@@ -40,12 +66,30 @@ export class ProductsController {
   }
 
   @Post()
+  @ApiResponse({
+    status: HttpStatus.CREATED,
+    description: MessageStatus.PRODUCT_CREATE_SUCCESS,
+    type: CreateProductDto,
+  })
+  @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: MessageStatus.REQUIRED_FIELDS_ERR })
+  @ApiOperation({ summary: 'Create new product' })
   async createProduct(@Body(ValidationPipe) dto: CreateProductDto) {
-    await this.productsService.createProduct(dto);
-    return { message: MessageStatus.PRODUCT_CREATE_SUCCESS };
+    return await this.productsService.createProduct(dto);
   }
 
   @Put(':id')
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: MessageStatus.PRODUCT_UPDATE_SUCCESS,
+    type: UpdateProductDto,
+  })
+  @ApiResponse({
+    status: HttpStatus.BAD_REQUEST,
+    description: `${MessageStatus.REQUIRED_FIELDS_ERR}, or id is invalid (not uuid)`,
+  })
+  @ApiResponse({ status: HttpStatus.NOT_FOUND, description: MessageStatus.PRODUCTS_NOT_FOUND })
+  @ApiParam({ name: 'id', required: true, description: 'Product identifier' })
+  @ApiOperation({ summary: 'Update products info' })
   async updateProduct(
     @Param('id', new ParseUUIDPipe()) id: string,
     @Body(ValidationPipe) dto: UpdateProductDto,
@@ -59,27 +103,29 @@ export class ProductsController {
   }
 
   @Post('/insertAll')
+  @ApiResponse({ status: HttpStatus.OK, description: MessageStatus.PRODUCTS_INSERT_SUCCESS })
+  @ApiResponse({
+    status: HttpStatus.BAD_REQUEST,
+    description: `${MessageStatus.ERROR_VALIDATION_PRODUCTS_FIELDS}. ${MessageStatus.REQUIRED_FIELDS_ERR}`,
+  })
+  @ApiOperation({ summary: 'Create new products, from a .json file with a list of products' })
   async insertProducts() {
-    async function loadProducts() {
-      try {
-        const stream = createReadStream('src/data/products.json', 'utf-8');
-        let data = '';
-        for await (const chunk of stream) data += chunk;
-        return JSON.parse(data);
-      } catch (error) {
-        throw new Error(MessageStatus.ERROR_JSON);
-      }
-    }
-    const productsJSON = await loadProducts();
+    const productsJSON = await loadProducts('src/data/products.json');
     try {
       await this.productsService.insertProductsFromJSON(productsJSON);
       return { message: MessageStatus.PRODUCTS_INSERT_SUCCESS };
     } catch (error) {
-      throw new HttpException(MessageStatus.ERROR_VALIDATION_PRODUCTS_FIELDS, HttpStatus.NOT_FOUND);
+      throw new HttpException(
+        MessageStatus.ERROR_VALIDATION_PRODUCTS_FIELDS,
+        HttpStatus.BAD_REQUEST,
+      );
     }
   }
 
   @Delete('/deleteAll')
+  @ApiResponse({ status: HttpStatus.OK, description: MessageStatus.PRODUCTS_DELETE_SUCCESS })
+  @ApiResponse({ status: HttpStatus.NOT_FOUND, description: MessageStatus.PRODUCTS_NOT_FOUND })
+  @ApiOperation({ summary: 'Delete all products' })
   async deleteAllProducts() {
     const products = await this.productsService.getProducts();
     if (!products.length) {
@@ -90,6 +136,11 @@ export class ProductsController {
   }
 
   @Delete(':id')
+  @ApiResponse({ status: HttpStatus.OK, description: MessageStatus.PRODUCT_DELETE_SUCCESS })
+  @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'ID is invalid (not uuid)' })
+  @ApiResponse({ status: HttpStatus.NOT_FOUND, description: MessageStatus.PRODUCT_NOT_FOUND })
+  @ApiParam({ name: 'id', required: true, description: 'Product identifier' })
+  @ApiOperation({ summary: 'Delete product by id' })
   async deleteProduct(@Param('id', new ParseUUIDPipe()) id: string) {
     const product = await this.productsService.getProduct(id);
     if (!product) {
