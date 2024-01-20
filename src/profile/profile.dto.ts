@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsOptional, IsString, IsUUID } from 'class-validator';
 
-export class CreateProfileDto {
+export class UpdateProfileDto {
   @IsString()
   @ApiProperty({ description: 'User name' })
   name: string;
@@ -35,5 +35,3 @@ export class CreateProfileDto {
   @ApiProperty({ description: 'User id identifier' })
   userId: string | null = null;
 }
-
-export class UpdateProfileDto extends CreateProfileDto {}
