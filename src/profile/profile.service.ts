@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateProfileDto, UpdateProfileDto } from './profile.dto';
+import { UpdateProfileDto } from './profile.dto';
 import { MessageStatus } from 'src/types/types';
 import { decrypt, encrypt } from 'src/guards/crypto';
 
@@ -8,31 +8,34 @@ import { decrypt, encrypt } from 'src/guards/crypto';
 export class ProfileService {
   constructor(private prisma: PrismaService) {}
 
-  async createProfile(dto: CreateProfileDto) {
-    const { cvvCard, numberCard, dateCard } = dto;
-    const newProfile = await this.prisma.profile.create({
-      data: {
-        ...dto,
-        cvvCard: encrypt(cvvCard),
-        numberCard: encrypt(numberCard),
-        dateCard: encrypt(dateCard),
-      },
-    });
-    return newProfile;
-  }
-
   async updateProfile(userId: string, dto: UpdateProfileDto) {
-    const { cvvCard, numberCard, dateCard } = dto;
-    const updatedProfile = await this.prisma.profile.update({
+    const profile = await this.prisma.profile.findUnique({
       where: { userId },
-      data: {
-        ...dto,
-        cvvCard: encrypt(cvvCard),
-        numberCard: encrypt(numberCard),
-        dateCard: encrypt(dateCard),
-      },
     });
-    return updatedProfile;
+    const { cvvCard, numberCard, dateCard } = dto;
+
+    if (profile) {
+      const updatedProfile = await this.prisma.profile.update({
+        where: { userId },
+        data: {
+          ...dto,
+          cvvCard: encrypt(cvvCard),
+          numberCard: encrypt(numberCard),
+          dateCard: encrypt(dateCard),
+        },
+      });
+      return updatedProfile;
+    } else {
+      const newProfile = await this.prisma.profile.create({
+        data: {
+          ...dto,
+          cvvCard: encrypt(cvvCard),
+          numberCard: encrypt(numberCard),
+          dateCard: encrypt(dateCard),
+        },
+      });
+      return newProfile;
+    }
   }
 
   async findProfileById(userId: string) {
