@@ -1,8 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsOptional, IsString, IsUUID } from 'class-validator';
 
-export class UpdateFavoritesDto {
+export class FavoritesDto {
   @IsString()
+  @ApiProperty({ description: 'Product id' })
   favorite: string;
 
   @IsOptional()

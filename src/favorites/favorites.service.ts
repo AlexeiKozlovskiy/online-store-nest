@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { UpdateFavoritesDto } from './favorites.dto';
+import { FavoritesDto } from './favorites.dto';
 
 @Injectable()
 export class FavoritesService {
@@ -10,7 +10,7 @@ export class FavoritesService {
     return await this.userFavorites(userId);
   }
 
-  async addToFavorites({ favorite }: UpdateFavoritesDto, userId: string) {
+  async addToFavorites({ favorite }: FavoritesDto, userId: string) {
     const existingFavorites = await this.userFavorites(userId);
     const { favorites } = existingFavorites;
     const alreadyFavorites = this.isAlreadyFavorites(favorites, favorite);
@@ -28,7 +28,7 @@ export class FavoritesService {
     }
   }
 
-  async deleteFavorite({ favorite }: UpdateFavoritesDto, userId: string) {
+  async deleteFavorite({ favorite }: FavoritesDto, userId: string) {
     const existingFavorites = await this.userFavorites(userId);
     const { favorites } = existingFavorites;
 
