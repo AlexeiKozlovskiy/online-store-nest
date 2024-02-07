@@ -19,6 +19,11 @@ async function bootstrap() {
   const PORT = Number(process.env.PORT || DEFAULT_PORT);
   await app.listen(PORT);
 
-  app.enableCors();
+  app.enableCors({
+    origin: true,
+    // origin: ['http://localhost:5173', 'https://online-store-react-94.netlify.app'],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true,
+  });
 }
 bootstrap();
