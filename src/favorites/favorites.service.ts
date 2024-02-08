@@ -12,33 +12,37 @@ export class FavoritesService {
 
   async addToFavorites({ favorite }: FavoritesDto, userId: string) {
     const existingFavorites = await this.userFavorites(userId);
-    const { favorites } = existingFavorites;
-    const alreadyFavorites = this.isAlreadyFavorites(favorites, favorite);
 
-    if (!existingFavorites) {
+    if (existingFavorites) {
+      const { favorites } = existingFavorites;
+      const alreadyFavorites = this.isAlreadyFavorites(favorites, favorite);
+
+      if (!alreadyFavorites) {
+        return await this.prisma.favorites.update({
+          where: { userId },
+          data: { favorites: [...favorites, favorite] },
+        });
+      }
+    } else {
       return await this.prisma.favorites.create({
         data: { userId, favorites: [favorite] },
       });
-    } else if (!alreadyFavorites) {
-      const updatedFavorites = await this.prisma.favorites.update({
-        where: { userId },
-        data: { favorites: [...favorites, favorite] },
-      });
-      return updatedFavorites;
     }
   }
 
   async deleteFavorite({ favorite }: FavoritesDto, userId: string) {
     const existingFavorites = await this.userFavorites(userId);
-    const { favorites } = existingFavorites;
 
-    const deleteArr = favorites.filter((el) => el !== favorite);
+    if (existingFavorites) {
+      const { favorites } = existingFavorites;
+      const deleteArr = favorites.filter((el) => el !== favorite);
 
-    const updatedFavorites = await this.prisma.favorites.update({
-      where: { userId },
-      data: { favorites: [...deleteArr] },
-    });
-    return updatedFavorites;
+      const updatedFavorites = await this.prisma.favorites.update({
+        where: { userId },
+        data: { favorites: [...deleteArr] },
+      });
+      return updatedFavorites;
+    }
   }
 
   private async userFavorites(userId: string) {
