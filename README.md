@@ -67,7 +67,13 @@ Servise used followings REST endpoints:
       - Server answer with `status code` **200** and profile records
       - Server answer with `status code` **400** and message if request `body` does not contain **required** fields, or it's the wrong type
 
-
+ * `favorites` (`/favorites` route)
+    * `GET favorites/:id` - get all favorites by user id
+      - Server answer with `status code` **200** if profile it exists (name, address, phone, nameCard, numberCard, dateCard, cvvCard)
+    * `POST /favorites/:id` - create new favorite product
+      - Server answer with `status code` **200** and message 'Favorite product created successfully'.
+    * `DELETE /favorites/:id` - delete favorite product
+      - Server answer with `status code` **200** and message 'Favorite product deleted successfully'
 
 ##  Stack
 - TS
