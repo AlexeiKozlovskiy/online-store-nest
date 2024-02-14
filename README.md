@@ -40,24 +40,24 @@ Servise used followings REST endpoints:
 
 
  * `auth` (`/auth` route)
-    * `POST auth/register` - for user registrations
+    * `POST /auth/register` - for user registrations
       - Server answer with `status code` **200** and auth records (id, email, login, picture, isGoogle)
       - Server answer with `status code` **409** and message `This email is already registered` if user is already registered
-    * `POST auth/login` - for user login
+    * `POST /auth/login` - for user login
       - Server answer with `status code` **200** and auth records (accessToken, refreshToken, expiresIn, id, email, login, picture, isGoogle)
       - Server answer with `status code` **401** and message `Unauthorized` if user have error login, incorrect password or email
-    * `POST auth/login/google` - for user google login
+    * `POST /auth/login/google` - for user google login
       - Server answer with `status code` **200** and auth records (accessToken, refreshToken, expiresIn)
-    * `POST auth/refresh` - for refresh auth tokens
+    * `POST /auth/refresh` - for refresh auth tokens
       - Server answer with `status code` **200** and auth records (accessToken, refreshToken, expiresIn)
 
  * `user` (`/user` route)
-    * `GET user/:id` - get user by id
+    * `GET /user/:id` - get user by id
       - Server answer with `status code` **200** if user it exists (id, email, login, picture, isGoogle)
       - Server answer with `status code` **401** and message `Unauthorized` if user not authorized
 
  * `profile` (`/profile` route)
-    * `GET profile/:id` - get profile by id
+    * `GET /profile/:id` - get profile by id
       - Server answer with `status code` **200** if profile it exists (name, address, phone, nameCard, numberCard, dateCard, cvvCard)
       - Server answer with `status code` **204** and message `User profile is empty` if profile user is empty data.
     * `POST /profile/create` - create new profile
@@ -68,7 +68,7 @@ Servise used followings REST endpoints:
       - Server answer with `status code` **400** and message if request `body` does not contain **required** fields, or it's the wrong type
 
  * `favorites` (`/favorites` route)
-    * `GET favorites/:id` - get all favorites by user id
+    * `GET /favorites/:id` - get all favorites by user id
       - Server answer with `status code` **200** if profile it exists (name, address, phone, nameCard, numberCard, dateCard, cvvCard)
     * `POST /favorites/:id` - create new favorite product
       - Server answer with `status code` **200** and message 'Favorite product created successfully'.
