@@ -4,14 +4,13 @@ import {
   Param,
   UseGuards,
   ParseUUIDPipe,
-  Post,
   Body,
   Put,
   HttpStatus,
 } from '@nestjs/common';
 import { JwtGuard } from 'src/guards/jwt.guard';
 import { ProfileService } from './profile.service';
-import { CreateProfileDto, UpdateProfileDto } from './profile.dto';
+import { UpdateProfileDto } from './profile.dto';
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { MessageStatus } from 'src/types/types';
 
@@ -19,17 +18,6 @@ import { MessageStatus } from 'src/types/types';
 @ApiTags('Profile')
 export class ProfileController {
   constructor(private profileService: ProfileService) {}
-
-  @Post('create')
-  @ApiResponse({ status: HttpStatus.OK, type: CreateProfileDto })
-  @ApiResponse({
-    status: HttpStatus.BAD_REQUEST,
-    description: MessageStatus.REQUIRED_FIELDS_ERR,
-  })
-  @ApiOperation({ summary: 'Create user profile' })
-  async createUserProfile(@Body() dto: CreateProfileDto) {
-    return await this.profileService.createProfile(dto);
-  }
 
   @Put('update')
   @ApiResponse({ status: HttpStatus.OK, type: UpdateProfileDto })

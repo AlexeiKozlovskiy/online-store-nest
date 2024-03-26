@@ -44,6 +44,8 @@ export enum MessageStatus {
   THISE_EMAIL_IS_ALREADY_REDISTRED = 'This email is already registered',
   USER_PROFILE_IS_EMPTY = 'User profile is empty',
   REQUIRED_FIELDS_ERR = 'Request body does not contain required fields, or it`s the wrong type',
+  FAVORITE_PRODUCT_CREATE_SUCCESS = 'Favorite product created successfully',
+  FAVORITE_PRODUCT_DELETE_SUCCESS = 'Favorite product deleted successfully',
 }
 
 export enum FiltersColor {
