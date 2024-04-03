@@ -4,7 +4,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import { Prisma } from '@prisma/client';
 import { CreateProductDto, ListAllQwerys, UpdateProductDto } from './products.dto';
 
-const CRON_TIME = 5 * 60 * 1000;
+const CRON_TIME = 7 * 60 * 1000;
 @Injectable()
 export class ProductsService {
   constructor(private prisma: PrismaService) {}
