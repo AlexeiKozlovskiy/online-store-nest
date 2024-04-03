@@ -4,6 +4,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import { Prisma } from '@prisma/client';
 import { CreateProductDto, ListAllQwerys, UpdateProductDto } from './products.dto';
 
+const CRON_TIME = 5 * 60 * 1000;
 @Injectable()
 export class ProductsService {
   constructor(private prisma: PrismaService) {}
@@ -20,7 +21,8 @@ export class ProductsService {
   }
 
   async getProduct(id: string): Promise<Product> {
-    return await this.prisma.product.findUnique({ where: { id } });
+    const product = await this.prisma.product.findUnique({ where: { id } });
+    return product;
   }
 
   async createProduct(dto: CreateProductDto): Promise<Product> {
@@ -113,4 +115,30 @@ export class ProductsService {
       );
     });
   }
+
+  // this part is for cron job by updating db for resolve "cold start" nuance
+
+  private getRandomProductNumber() {
+    return Math.floor(Math.random() * 61);
+  }
+
+  async cronJob() {
+    const randomProductNumber = this.getRandomProductNumber();
+    const allProducts = await this.getProducts();
+    const someProduct = allProducts[randomProductNumber];
+    const product = await this.getProduct(someProduct.id);
+    return product;
+  }
 }
+
+async function cronJobUpdate() {
+  const prismaService = new PrismaService();
+  const service = new ProductsService(prismaService);
+
+  const product = await service.cronJob();
+  console.log('cronUpdate', product);
+}
+
+setInterval(async () => {
+  cronJobUpdate();
+}, CRON_TIME);
