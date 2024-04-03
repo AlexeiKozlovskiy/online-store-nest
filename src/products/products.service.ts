@@ -4,7 +4,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import { Prisma } from '@prisma/client';
 import { CreateProductDto, ListAllQwerys, UpdateProductDto } from './products.dto';
 
-const CRON_TIME = 7 * 60 * 1000;
+const CRON_TIME = 8 * 60 * 1000;
 @Injectable()
 export class ProductsService {
   constructor(private prisma: PrismaService) {}
@@ -131,10 +131,10 @@ export class ProductsService {
   }
 }
 
-async function cronJobUpdate() {
-  const prismaService = new PrismaService();
-  const service = new ProductsService(prismaService);
+const prismaService = new PrismaService();
+const service = new ProductsService(prismaService);
 
+async function cronJobUpdate() {
   const product = await service.cronJob();
   console.log('cronUpdate', product);
 }
