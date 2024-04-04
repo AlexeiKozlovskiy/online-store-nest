@@ -118,6 +118,8 @@ export class ProductsService {
 
   // this part is for cron job by updating db for resolve "cold start" nuance
 
+  // tested - is not effective
+
   private getRandomProductNumber() {
     return Math.floor(Math.random() * 61);
   }
@@ -139,6 +141,6 @@ async function cronJobUpdate() {
   console.log('cronUpdate', product);
 }
 
-setInterval(async () => {
-  cronJobUpdate();
-}, CRON_TIME);
+// setInterval(async () => {
+//   cronJobUpdate();
+// }, CRON_TIME);
