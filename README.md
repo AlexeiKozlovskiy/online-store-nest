@@ -2,12 +2,16 @@
 
 This is a repository of my NestJS servise for full stack app Online store. This servise performs a tasks creating, updating and storing products and users. Service using Prisma database. Authorization is protected and performed using a bearer token with it is update. For products service written tests on Jest. Endpoints for this service described in Swagger.
 
-## Frontend part in [here](https://github.com/AlexeiKozlovskiy/online-store-react).
+### My frontend repo that use this backend service
+- [Online-store-react](https://github.com/AlexeiKozlovskiy/online-store-react).
+- [Online-store-next](https://github.com/AlexeiKozlovskiy/online-store-next).
 
-## Deploy whole app in [here](https://online-store-react-94.netlify.app/).
+### Deploy whole app
 First fetching data is can take near 1-3 minutes, further is fast.
+- [Online-store-react](https://online-store-react-94.netlify.app/).
+- [Online-store-next](https://www.kozlovsky.space).
 
-## Deploy this backend servise and data base in [here](https://render.com/).
+### Deploy this backend servise and data base in [here](https://render.com/).
 <img src="https://github.com/AlexeiKozlovskiy/online-store-react/blob/develop/public/assets/readme/back-deploy2.png" alt="deploy image" width="700">
 
 ## Details 
